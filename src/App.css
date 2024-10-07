@@ -1,0 +1,134 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("../public/f3e48a98861245.5f4a72a481628.jpg") no-repeat fixed;
+  background-size: cover;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+.title-main {
+  font-size: 4.5rem;
+  font-weight: bold;
+  color: rgb(236, 236, 236);
+}
+
+.title-sub {
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: white;
+}
+
+.dropzone {
+  border: 2px dashed #0070f3;
+  border-radius: 4px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background 0.3s;
+}
+
+.dropzone-text {
+  font-size: 1rem;
+  color: white;
+}
+
+.title-selected-file {
+  font-size: 20px;
+  color: #ffffff !important;
+}
+
+.selected-files {
+  gap: 40px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  color: white;
+}
+
+.selected-file {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100px;
+  transition: transform 0.2s;
+  margin: 5px;
+}
+
+.selected-file:hover {
+  transform: scale(1.05);
+}
+
+.selected-file img {
+  width: 100%;
+  height: auto;
+}
+
+.remove-btn {
+  background: none;
+  position: absolute;
+  top: -3px;
+  right: -15px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  border: none;
+  border-radius: 25px;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 10px rgba(0, 198, 255, 0.5), 0 0 20px rgba(0, 114, 255, 0.5);
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(135deg, #0072ff, #00c6ff);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 198, 255, 1), 0 0 30px rgba(0, 114, 255, 1);
+}
+
+.download-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.download-link:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
+}
+
+.footer {
+  font-family: 'SF Pro Display', sans-serif;
+  color: white;
+  font-size: 1rem;
+}
+
+.footer a {
+  text-decoration: none;
+  color: rgb(238, 95, 95);
+}
