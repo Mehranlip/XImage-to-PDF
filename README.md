@@ -8,6 +8,7 @@ XImage to PDF is a web application that allows users to upload images (JPG and P
 - Convert images to PDF
 - Download the generated PDF
 - Automatic deletion of PDF after 30 seconds
+- <img src="https://github.com/user-attachments/assets/605c2332-c6f3-4b3c-9430-2acd9d271c54" />
 
 ## Prerequisites
 
