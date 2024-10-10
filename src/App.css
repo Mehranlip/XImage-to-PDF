@@ -122,6 +122,11 @@ body {
   transform: scale(1.05);
 }
 
+.countdown{
+  font-family: 'SF Pro Display', sans-serif;
+  color: white;
+}
+
 .footer {
   font-family: 'SF Pro Display', sans-serif;
   color: white;

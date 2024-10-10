@@ -73,6 +73,18 @@ app.post('/api/upload', (req, res) => {
 
             console.log('PDF created successfully!');
             res.status(200).json({ message: 'PDF created', pdfUrl: `/pdfs/${uniqueName}` });
+
+          
+            setTimeout(() => {
+                fs.unlink(outputPath, (err) => {
+                    if (err) {
+                        console.error('Error deleting PDF:', err);
+                    } else {
+                        console.log(`PDF ${uniqueName} deleted after 30 seconds.`);
+                    }
+                });
+            }, 30000);
+
         } catch (error) {
             console.error('Error creating PDF:', error);
             res.status(500).json({ message: 'Error creating PDF' });

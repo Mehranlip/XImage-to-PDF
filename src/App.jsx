@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useDropzone } from 'react-dropzone';
 import './App.css';
@@ -7,6 +7,8 @@ function App() {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [pdfUrl, setPdfUrl] = useState('');
+  const [countdown, setCountdown] = useState(30); 
+  const [showDownloadButton, setShowDownloadButton] = useState(false); 
 
   const onDrop = (acceptedFiles) => {
     const validFiles = acceptedFiles.filter(file => 
@@ -28,7 +30,7 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (selectedFiles.length === 0) {
-      console.log('No files selected');
+      toast.error("Please select an image before uploading");
       return;
     }
 
@@ -54,11 +56,27 @@ function App() {
       console.log('PDF created at:', data.pdfUrl);
       setPdfUrl(data.pdfUrl);
       setSelectedFiles([]);
+      setShowDownloadButton(true); 
+      startCountdown(); 
     } catch (err) {
       console.error('Request failed:', err);
     } finally {
       setLoading(false);
     }
+  };
+
+  const startCountdown = () => {
+    setCountdown(30); 
+    const intervalId = setInterval(() => {
+      setCountdown(prev => {
+        if (prev <= 1) {
+          clearInterval(intervalId); 
+          setShowDownloadButton(false); 
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000); 
   };
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
@@ -95,17 +113,24 @@ function App() {
             </div>
           </div>
         )}
-        <button onClick={() => selectedFiles.length === 0 ? toast.error("Please select an image before uploading") : toast("Successful upload, pdf file ready to download!")} type="submit" className="btn-gradient mt-3" disabled={loading}>Upload and Create PDF</button>
+        <button type="submit" className="btn-gradient mt-3" disabled={loading}>
+          Upload and Create PDF
+        </button>
       </form>
       {loading && <img width={50} src="../public/loading1.gif" alt="Loading..." />}
-      {pdfUrl && <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
-        <button className='download-link'>
-          Download PDF
-        </button>
-      </a>}
+      {pdfUrl && showDownloadButton && ( 
+        <div>
+          <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
+            <button className='download-link'>
+              Download PDF
+            </button>
+          </a>
+          <p className="countdown mt-3">This PDF will be deleted in {countdown} seconds.</p>
+        </div>
+      )}
 
       <footer className="footer text-center mt-4 fixed-bottom">
-        Developed by ❤️ from  <a target='_blank' href='https://github.com/Mehranlip'>Mehran</a>
+        Developed by ❤️ from <a target='_blank' href='https://github.com/Mehranlip'>Mehran</a>
       </footer>
       <ToastContainer />
     </div>
