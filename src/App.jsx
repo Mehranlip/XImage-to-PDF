@@ -4,7 +4,6 @@ import { useDropzone } from 'react-dropzone';
 import './App.css';
 
 function App() {
-  const notify = () => toast("Successful upload, pdf file ready to download!");
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [pdfUrl, setPdfUrl] = useState('');
@@ -54,6 +53,7 @@ function App() {
       const data = await res.json();
       console.log('PDF created at:', data.pdfUrl);
       setPdfUrl(data.pdfUrl);
+      setSelectedFiles([]);
     } catch (err) {
       console.error('Request failed:', err);
     } finally {
@@ -95,7 +95,7 @@ function App() {
             </div>
           </div>
         )}
-        <button onClick={notify} type="submit" className="btn-gradient mt-3" disabled={loading}>Upload and Create PDF</button>
+        <button onClick={() => selectedFiles.length === 0 ? toast.error("Please select an image before uploading") : toast("Successful upload, pdf file ready to download!")} type="submit" className="btn-gradient mt-3" disabled={loading}>Upload and Create PDF</button>
       </form>
       {loading && <img width={50} src="../public/loading1.gif" alt="Loading..." />}
       {pdfUrl && <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
