@@ -30,8 +30,11 @@ Follow these steps to install and set up the project:
 
    ```bash
    npm install
-   npm run dev
+3. **run project:**
 
-The server will run on http://localhost:4000 <br/>
-The application will run on http://localhost:5173
+   ```bash
+   npm run dev
+   
+- The server will run on http://localhost:4000 <br/>
+- The application will run on http://localhost:5173
 
