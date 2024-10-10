@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import { useDropzone } from 'react-dropzone';
 import './App.css';
 
 function App() {
+  const notify = () => toast("Successful upload, pdf file ready to download!");
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [pdfUrl, setPdfUrl] = useState('');
 
   const onDrop = (acceptedFiles) => {
-    setSelectedFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
+    const validFiles = acceptedFiles.filter(file => 
+      file.type.startsWith('image/')
+    );
+    
+    if (validFiles.length === 0) {
+      toast.error("Please upload only image files")
+      return;
+    }
+
+    setSelectedFiles((prevFiles) => [...prevFiles, ...validFiles]);
   };
 
   const handleRemoveFile = (index) => {
@@ -64,7 +75,7 @@ function App() {
         {selectedFiles.length > 0 && (
           <div className="selected-files">
             <h3 className="title-selected-file">Selected Files</h3>
-            <div className="d-flex flex-wrap justify-content-center">
+            <div className="d-flex flex-wrap justify-content-center gap-3">
               {selectedFiles.map((file, index) => (
                 <div key={index} className="selected-file position-relative">
                   <img
@@ -84,9 +95,9 @@ function App() {
             </div>
           </div>
         )}
-        <button type="submit" className="btn-gradient mt-3" disabled={loading}>Upload and Create PDF</button>
+        <button onClick={notify} type="submit" className="btn-gradient mt-3" disabled={loading}>Upload and Create PDF</button>
       </form>
-      {loading && <p>Loading...</p>}
+      {loading && <img width={50} src="../public/loading1.gif" alt="Loading..." />}
       {pdfUrl && <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
         <button className='download-link'>
           Download PDF
@@ -96,6 +107,7 @@ function App() {
       <footer className="footer text-center mt-4 fixed-bottom">
         Developed by ❤️ from  <a target='_blank' href='https://github.com/Mehranlip'>Mehran</a>
       </footer>
+      <ToastContainer />
     </div>
   );
 }
