@@ -1,5 +1,5 @@
 # XImage to PDF
-
+<img src="https://github.com/user-attachments/assets/5009ca2b-d94e-4a20-8732-2fb2dfa2249a" />
 XImage to PDF is a web application that allows users to upload images (JPG and PNG) and convert them into a single PDF document. The generated PDF can be downloaded and will be automatically deleted after 30 seconds for security purposes.
 
 ## Features
@@ -31,6 +31,6 @@ Follow these steps to install and set up the project:
    npm install
    npm run dev
 
-The server will run on http://localhost:4000
-The application will run on http://localhost:3000
+The server will run on http://localhost:4000 <br/>
+The application will run on http://localhost:5173
 
